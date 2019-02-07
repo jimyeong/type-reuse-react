@@ -1,29 +1,42 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import Tab from './assets/components/tabs/Tab';
-import Map from './assets/components/map/Map';
-import Users from './assets/components/users/Users';
+import { Router, Switch, Route } from 'react-router';
+import Btn from './assets/components/tabs/btns/Btn';
+import Users from './assets/components/presentational/Users';
+import Map from './assets/components/presentational/Map';
+import {history, navigate} from './assets/components/helper/HistoryHelper';
 
-interface Props{
 
-}
-interface State{
 
-}
+
 
 
 class App extends React.Component {
 
     public render(){
         return(
-            <Router>
+            <Router history={ history }>
                 <div>
                     <div className="wrapper">
-                        <Tab/>
+                        hello world
+
+                        <Btn
+                            onClick={() => navigate('/')}
+                            btnName="home"
+                            className="btn-home"
+                        />
+                        <Btn
+                            onClick={() => navigate('/user')}
+                            btnName="user"
+                            className="btn-test"
+                        />
+                        <Btn
+                            onClick={() => navigate('/map')}
+                            btnName="map"
+                            className="btn-test"
+                        />
                         <Switch>
-                            <Route path="/user" render={ () => <Users/> }/>
-                            <Route path="/map" render={ () => <Map/> }/>
-                            <Route component={Users}/>
+                            <Route path="/user" render={() => <Users/>}/>
+                            <Route path="/map" render={() => <Map/>}/>
                         </Switch>
                     </div>
                 </div>
